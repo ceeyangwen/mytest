@@ -61,6 +61,11 @@
    		<artifactId>spring-context</artifactId>
       	<version>3.2.8.RELEASE</version>
     </dependency>
+    <dependency>
+        	<groupId>com.101tec</groupId>
+        	<artifactId>zkclient</artifactId>
+        	<version>0.4</version>
+        </dependency>
   </dependencies>
   
 </project>

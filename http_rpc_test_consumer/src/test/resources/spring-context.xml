@@ -19,7 +19,8 @@
     <context:annotation-config />
 
     <bean id="consumerConfig" class="com.test.rpc.invoke.ConsumerConfig">
-        <property name="url" value="http://127.0.0.1:8888/invoke" />
+        <!-- <property name="url" value="http://127.0.0.1:8888/invoke" /> -->
+        <property name="url" value="zookeeper://192.168.137.101:2181" />
     </bean>
 
     <bean id="speakInterfaceInvoker" class="com.test.rpc.proxy.ConsumerProxyFactory">

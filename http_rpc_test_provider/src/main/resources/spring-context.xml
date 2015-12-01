@@ -28,8 +28,9 @@
         </constructor-arg>
         <constructor-arg name="config">
             <bean id="providerConfig" class="com.test.rpc.invoke.ProviderConfig">
-                <property name="port" value="8888"/>
-                <property name="target" value="/invoke"/>
+                <property name="port" value="18889"/>
+                <!-- <property name="target" value="/invoke"/> -->
+                <property name="target" value="zookeeper://192.168.137.101:2181"/>
             </bean>
         </constructor-arg>
     </bean>

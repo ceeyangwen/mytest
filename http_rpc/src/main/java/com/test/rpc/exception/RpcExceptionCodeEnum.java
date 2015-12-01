@@ -11,6 +11,7 @@ public enum RpcExceptionCodeEnum {
 	NO_BEAN_FOUND("NO_BEAN_FOUND", "没有找到bean对象"),
 	INVOKE_REQUEST_ERROR("INVOKE_REQUEST_ERROR", "rpc请求异常"),
 	INVOKE_RESPONSE_ERROR("INVOKE_RESPONSE_ERROR", "rpc响应异常"),
+	NO_PROVIDERS("NO_PROVIDERS", "没有服务提供"),
 	;
 	
 	private String code;

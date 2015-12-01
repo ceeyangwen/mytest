@@ -8,6 +8,7 @@ import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.routing.HttpRoute;
@@ -31,8 +32,8 @@ public class HttpInvoker implements Invoker{
 	private HttpInvoker() {}
 	
 	//请求
-	public String request(String request, ConsumerConfig consumerConfig) throws RpcException {
-		HttpPost post = new HttpPost(consumerConfig.getUrl());
+	public String request(String request, String url) throws RpcException {
+		HttpPost post = new HttpPost(url);
 		post.setHeader("Connection", "Keep-Alive");
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("data", request));
@@ -47,6 +48,22 @@ public class HttpInvoker implements Invoker{
 			throw new RpcException("请求异常", e, RpcExceptionCodeEnum.INVOKE_REQUEST_ERROR.getCode(), request);
 		}
 	}
+//	public String request(String request, ConsumerConfig consumerConfig) throws RpcException {
+//		HttpPost post = new HttpPost(consumerConfig.getUrl());
+//		post.setHeader("Connection", "Keep-Alive");
+//		List<NameValuePair> params = new ArrayList<NameValuePair>();
+//		params.add(new BasicNameValuePair("data", request));
+//		try {
+//			post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+//			HttpResponse response = httpClient.execute(post);
+//			if(response.getStatusLine().getStatusCode() == 200) {
+//				return EntityUtils.toString(response.getEntity(), "UTF-8");
+//			}
+//			throw new RpcException(RpcExceptionCodeEnum.INVOKE_REQUEST_ERROR.getCode(), request);
+//		} catch (Exception e) {
+//			throw new RpcException("请求异常", e, RpcExceptionCodeEnum.INVOKE_REQUEST_ERROR.getCode(), request);
+//		}
+//	}
 
 	//响应
 	public void response(String response, OutputStream os) throws RpcException {
@@ -68,6 +85,7 @@ public class HttpInvoker implements Invoker{
 		HttpHost httpHost = new HttpHost(CommonPreperty.getStringProperty(CommonConstant.HTTP_HOST), 
 				CommonPreperty.getIntProperty(CommonConstant.HTTP_HOST_PORT));
 		manager.setMaxPerRoute(new HttpRoute(httpHost), CommonPreperty.getIntProperty(CommonConstant.MAX_PER_ROUTE));
-		return HttpClients.custom().setConnectionManager(manager).build();
+		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(60000).setConnectTimeout(500).build();
+		return HttpClients.custom().setConnectionManager(manager).setDefaultRequestConfig(requestConfig).build();
 	}
 }

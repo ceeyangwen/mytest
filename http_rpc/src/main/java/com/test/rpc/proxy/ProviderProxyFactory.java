@@ -53,15 +53,18 @@ public class ProviderProxyFactory extends AbstractHandler{
 			} else {
 				new HttpContainer(this, config).start();
 			}
-		}
+		}	
 		for(Map.Entry<Class, Object> entry : providerMap.entrySet()) {
-			register(entry.getKey(), entry.getValue());
+			register(entry.getKey(), entry.getValue(), config);
 		}
 		factory = this;
 	}
 	
-	private void register(Class clazz, Object obj) {
+	private void register(Class clazz, Object obj, ProviderConfig config) {
 		providers.put(clazz, obj);
+		if(null != config) {
+			config.register(clazz);
+		}
 	}
 
 	public void handle(String target, HttpServletRequest request, HttpServletResponse response, int dispatch)

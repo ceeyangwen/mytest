@@ -18,7 +18,8 @@ public interface Invoker {
 	 * @return
 	 * @throws RpcException
 	 */
-	public String request(String request, ConsumerConfig consumerConfig) throws RpcException;
+	//public String request(String request, ConsumerConfig consumerConfig) throws RpcException;
+	public String request(String request, String url) throws RpcException;
 	
 	/**
 	 * 请求应答

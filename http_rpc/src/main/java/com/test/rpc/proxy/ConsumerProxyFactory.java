@@ -36,7 +36,20 @@ public class ConsumerProxyFactory implements InvocationHandler{
 		Class interfaceClass = proxy.getClass().getInterfaces()[0];
 		//封装请求报文
 		String req = serializer.serializeReq(interfaceClass, method.getName(), args);
-		String res = invoker.request(req, consumerConfig);
+		String res = null;
+		int times = 0;
+		//心跳机制延迟， 默认重连3次
+		while(times++ < 2 && res == null) {
+			try {
+				res = invoker.request(req, consumerConfig.getUrl(interfaceClass));
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		if(null == res) {
+			invoker.request(req, consumerConfig.getUrl(interfaceClass));
+		}
+		//String res = invoker.request(req, consumerConfig);
 		return deserializer.parseResponse(res);
 	}
 
