@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="user" namespace="/user" extends="dang-default">
+		<action name="register" class="com.dang.actions.user.RegisterAction">
+			<result name="verify">/user/verify_form.jsp</result>
+			<result name="fail">/user/regist_form.jsp</result>
+		</action>
+		<action name="verify" class="com.dang.actions.user.VerifyAction">
+			<result name="success">/user/register_ok.jsp</result>
+			<result name="fail">/user/verify_form.jsp</result>
+		</action>
+		<action name="login" class="com.dang.actions.user.LoginAction">
+			<result name="success">/main/main.jsp</result>
+			<result name="fail">/user/login_form.jsp</result>
+		</action>
+		<action name="image" class="com.dang.actions.user.ImageCodeAction">
+			<result name="success" type="stream">
+				<param name="inputName">imageStream</param>
+			</result>
+		</action>
+		<action name="validCode" class="com.dang.actions.user.ValidCodeAction">
+			<result name="success" type="json">
+				<param name="root">ok</param>
+			</result>
+		</action>
+		<action name="validEmail" class="com.dang.actions.user.ValidEmailAction">
+			<result name="success" type="json">
+			</result>
+		</action>
+	</package>
+</struts>

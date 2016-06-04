@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="name" namespace="/main" extends="dang-default">
+		<action name="category" class="com.dang.actions.main.CategoryAction">
+			<result>/main/category.jsp</result>
+		</action>
+		<action name="recommend" class="com.dang.actions.main.RecommendAction">
+			<result>/main/recommend.jsp</result>
+		</action>
+		<action name="hot" class="com.dang.actions.main.HotAction">
+			<result>/main/hot.jsp</result>
+		</action>
+		<action name="findNewPros" class="com.dang.actions.main.NewProductAction">
+			<result>/main/new.jsp</result>
+		</action>
+		<action name="booklist" class="com.dang.actions.main.BookListAction">
+			<result>/main/book_list.jsp</result>
+		</action>
+	</package>
+</struts>
