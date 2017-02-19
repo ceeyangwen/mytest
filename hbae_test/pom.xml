@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cn.gavin</groupId>
+  <artifactId>hbae_test</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>hbae_test</name>
+  
+  <dependencies>
+  	<dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-core</artifactId>
+      <version>1.0.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.hbase</groupId>
+      <artifactId>hbase</artifactId>
+      <version>0.92.1</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>maven-release-plugin</artifactId>
+          <groupId>org.apache.maven.plugins</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- Hadoop requires commons-io but doesn't list it as an explicit
+         or transient dependency. include it manually. -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.1</version>
+    </dependency>
+<dependency>
+            <groupId>jdk.tools</groupId>
+            <artifactId>jdk.tools</artifactId>
+            <version>1.8</version>
+            <scope>system</scope>
+            <systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+</dependency>
+  </dependencies>
+</project>

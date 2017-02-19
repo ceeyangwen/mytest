@@ -1,0 +1,14 @@
+1、新建一个controller
+2、编写Spring Boot启动类
+3、进行访问测试
+
+Spring boot热部署spring-loaded
+1、启动参数spring-boot:run,关闭后进程可能还存在
+2、下载spring-loader-1.2.4.RELEASE.jar下载下来，然后配置-javaagent:spring-loader-1.2.4.RELEASE.jar -noverify，然后run as即可
+
+3、使用spring-boot-devtools，spring-boot-devtools是一个味开发者服务的模块，其中最重要的功能就是自动应用代码更改到最新的APP上面去。原理是发现代码有更改之后，重新启动应用，但是速度比手动重启还要快
+深层原理是使用了两个classloader，一个classloader家在那些不会改变的类（第三方jar包）另一个classloader加载会更改的类，这样在有代码更改的时候，原来的classloader被丢弃，重新创建一个classloader
+由于需要加载的类相对较少，所以实现了更快的启动时间。
+修改方法的返回值、重新创建方法、重新创建clas都能够进行热部署
+
+

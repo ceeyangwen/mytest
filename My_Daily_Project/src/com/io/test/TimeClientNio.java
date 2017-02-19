@@ -91,8 +91,8 @@ class TimeClientHandler implements Runnable {
 			SocketChannel sc = (SocketChannel)key.channel();
 			if(key.isConnectable()) {
 				if(sc.finishConnect()) {
-					sc.register(selector, SelectionKey.OP_READ);
 					doWrite(sc);
+					sc.register(selector, SelectionKey.OP_READ);
 				} else {
 					//连接失败，进程退出
 					System.exit(1);
