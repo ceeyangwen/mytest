@@ -1,0 +1,28 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "io.renren.modules.app.utils.JwtUtils",
+      "name": "renren.jwt",
+      "type": "io.renren.modules.app.utils.JwtUtils"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "io.renren.modules.app.utils.JwtUtils",
+      "defaultValue": 0,
+      "name": "renren.jwt.expire",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "io.renren.modules.app.utils.JwtUtils",
+      "name": "renren.jwt.header",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "io.renren.modules.app.utils.JwtUtils",
+      "name": "renren.jwt.secret",
+      "type": "java.lang.String"
+    }
+  ]
+}
